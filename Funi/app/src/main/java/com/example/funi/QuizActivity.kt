@@ -11,35 +11,23 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      private var subject : CharSequence? = null
      private var gradeLevel : String? = null
      private var quiz : Quiz? = null
-     private var answer : CharSequence? = null
 
 
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
-         //test
-         answer1.text = "1"
-         answer2.text = "2"
-         answer3.text = "3"
-         answer4.text = "4"
-
         name = intent.getStringExtra("playerName")
         subject = intent.getCharSequenceExtra("subject")
         gradeLevel = intent.getStringExtra("gradeLevel")
-
-        //test logs
-        name?.let { Log.i("name received", it)}
-        subject?.let { Log.i("subject received", it.toString())}
-        gradeLevel?.let {Log.i("gradeLevel received", it)}
 
         makeQuiz()
 
          //event listener for check answer button
         checkAnswerButton.setOnClickListener {
             val answerID = quizRadioGroup.checkedRadioButtonId
-            val answer = findViewById<RadioButton>(answerID).text
-            quiz?.checkAnswer(answer.toString())
+            val chosenAnswer = findViewById<RadioButton>(answerID).text
+            quiz?.checkAnswer(chosenAnswer.toString())
         }
      }
 
@@ -60,20 +48,18 @@ import kotlinx.android.synthetic.main.activity_quiz.*
                 "3rd grade" -> quiz = ThirdgradeMathQuiz()
             }
         }
-        runQuiz()
+          val q = quiz?.getQuiz()
+          displayQuestion(q, quiz)
      }
 
-     fun runQuiz() {
-         val it: MutableIterator<Question>? = quiz?.questions?.iterator()
-         if (it != null) {
-             while(it.hasNext()) {
-                 val q = it.next()
-                 val question = q.question
-                 val answer = q.answer
-                 val answerChoices = q.answerChoices
-                 println(" question: $question \n answer: $answer \n answerChoices: $answerChoices")
-             }
-         }
+     fun displayQuestion(q: Question?, quiz: Quiz?) {
+         val question = q?.question
+         val answerChoices = q?.answerChoices
+         quizText.text = question
+         answer1.text = answerChoices?.get(0)
+         answer2.text = answerChoices?.get(1)
+         answer3.text = answerChoices?.get(2)
+         answer4.text = answerChoices?.get(3)
      }
 
  }

@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public abstract class Quiz {
     public ArrayList<Question> questions;
-   // public Iterator<Question> it = questions.iterator();
+    private Question q;
 
     public Quiz() {
         this.questions = new ArrayList<>();
@@ -18,7 +18,15 @@ public abstract class Quiz {
         questions.add(quest);
     }
 
-    public void checkAnswer(String answer) {
+    public Question getQuiz() {
+        Iterator<Question> it = questions.iterator();
+        if(it.hasNext()) {
+            q = it.next();
+        }
+        return q;
+    }
+
+    public void checkAnswer(String chosenAnswer) {
 
     }
 }
