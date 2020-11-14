@@ -10,7 +10,7 @@
         android:id="@+id/quizText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -18,9 +18,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="404dp"
-        android:layout_height="194dp"
+        android:id="@+id/quizRadioGroup"
+        android:layout_width="311dp"
+        android:layout_height="188dp"
         android:layout_marginTop="376dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
@@ -49,12 +49,12 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/checkAnswerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/checkAnswer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/quizRadioGroup" />
 </androidx.constraintlayout.widget.ConstraintLayout>

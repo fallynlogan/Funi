@@ -1,17 +1,24 @@
 package com.example.funi;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 
-public class Quiz {
-    //all strings
-    //questions = [[question, answerChoices[], answer], [question, answerChoices[], answer], [question, answerChoices[], answer], [question, answerChoices[], answer], ...]
+public abstract class Quiz {
+    public ArrayList<Question> questions;
+   // public Iterator<Question> it = questions.iterator();
 
-    //strings of image names for each question
-    private List<String> questions = new ArrayList<String>();
-    //fix this??
-    private List<List<String>> answerChoices = new ArrayList<>();
-    private List<String> answers = new ArrayList<>();
     public Quiz() {
+        this.questions = new ArrayList<>();
+    }
+
+    public void addQuestion(String answer, ArrayList<String> answerChoices, String question) {
+        Question quest = new Question();
+        quest.setAnswer(answer);
+        quest.setAnswerChoices(answerChoices);
+        quest.setQuestion(question);
+        questions.add(quest);
+    }
+
+    public void checkAnswer(String answer) {
 
     }
 }
