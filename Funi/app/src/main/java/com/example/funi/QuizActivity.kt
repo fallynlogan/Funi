@@ -27,7 +27,8 @@ import kotlinx.android.synthetic.main.activity_quiz.*
         checkAnswerButton.setOnClickListener {
             val answerID = quizRadioGroup.checkedRadioButtonId
             val chosenAnswer = findViewById<RadioButton>(answerID).text
-            quiz?.checkAnswer(chosenAnswer.toString())
+            val nextQuestion = quiz?.checkAnswer(chosenAnswer.toString())
+            displayQuestion(nextQuestion)
         }
      }
 
@@ -49,10 +50,10 @@ import kotlinx.android.synthetic.main.activity_quiz.*
             }
         }
           val q = quiz?.getQuiz()
-          displayQuestion(q, quiz)
+          displayQuestion(q)
      }
 
-     fun displayQuestion(q: Question?, quiz: Quiz?) {
+     fun displayQuestion(q: Question?) {
          val question = q?.question
          val answerChoices = q?.answerChoices
          quizText.text = question
