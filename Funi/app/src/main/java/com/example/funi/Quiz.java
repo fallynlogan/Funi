@@ -6,6 +6,7 @@ public abstract class Quiz {
     public ArrayList<Question> questions;
     Iterator<Question> it;
     private Question q;
+    public boolean hasEnded = false;
 
     public Quiz() {
         this.questions = new ArrayList<>();
@@ -28,17 +29,23 @@ public abstract class Quiz {
     }
 
     public Question getNextQuestion() {
-        q = it.next();
+        if(it.hasNext()) {
+            q = it.next();
+        } else {
+            hasEnded = true;
+        }
         return q;
     }
 
     public Question checkAnswer(String chosenAnswer) {
-        if(chosenAnswer == q.getAnswer()) {
-            //notifyObserverCorrect
-        } else {
-            //notifyObserverIncorrect
+        if(!hasEnded) {
+            if (chosenAnswer == q.getAnswer()) {
+                //notifyObserverCorrect
+            } else {
+                //notifyObserverIncorrect
+            }
+            q = getNextQuestion();
         }
-        q = getNextQuestion();
         return q;
     }
 }

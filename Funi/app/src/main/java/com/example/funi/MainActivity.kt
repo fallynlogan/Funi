@@ -41,11 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
             else {
                 subject = findViewById<RadioButton>(subjectID).text
-                //val gradeLevel = gradeSpinner.selectedItem
                 myQuizScreen.quiz(selectedGradePosition, playerName, subject)
-                println(myQuizScreen.name)
-                println(myQuizScreen.gradeLevel)
-                println(myQuizScreen.subject)
                 val intent = Intent(this, QuizActivity::class.java)
                 intent.putExtra("playerName", myQuizScreen.name)
                 intent.putExtra("subject", myQuizScreen.subject)

@@ -1,5 +1,6 @@
  package com.example.funi
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioButton
@@ -11,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      private var subject : CharSequence? = null
      private var gradeLevel : String? = null
      private var quiz : Quiz? = null
+     private var q: Question? = null
+     private var myEndScreen = EndScreen()
 
 
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +31,19 @@ import kotlinx.android.synthetic.main.activity_quiz.*
             val answerID = quizRadioGroup.checkedRadioButtonId
             val chosenAnswer = findViewById<RadioButton>(answerID).text
             val nextQuestion = quiz?.checkAnswer(chosenAnswer.toString())
-            displayQuestion(nextQuestion)
+            if(!quiz?.hasEnded!!) {
+                displayQuestion(nextQuestion)
+            }
+            else {
+                // start end screen activity
+                myEndScreen.end(gradeLevel, name, subject)
+                println("Ended " + myEndScreen.gradeLevel + myEndScreen.name + myEndScreen.subject)
+                val intent = Intent(this, EndActivity::class.java)
+                intent.putExtra("playerName", myEndScreen.name)
+                intent.putExtra("subject", myEndScreen.subject)
+                intent.putExtra("gradeLevel", myEndScreen.gradeLevel)
+                startActivity(intent)
+            }
         }
      }
 
@@ -49,7 +64,7 @@ import kotlinx.android.synthetic.main.activity_quiz.*
                 "3rd grade" -> quiz = ThirdgradeMathQuiz()
             }
         }
-          val q = quiz?.getQuiz()
+          q = quiz?.getQuiz()
           displayQuestion(q)
      }
 
