@@ -11,10 +11,10 @@ public class FirstgradeReadingQuiz extends Quiz {
     public void setQuestions() {
         //eventually set this to 30 for 30 questions
         //question 1
-        super.addQuestion("A", new ArrayList<>(Arrays.asList("A", "B", "C", "D")), "Choose A");
+        super.addQuestion("ball", new ArrayList<>(Arrays.asList("ball", "mall", "yall", "tall")), "ball");
         //question 2
-        super.addQuestion("E", new ArrayList<>(Arrays.asList("E", "F", "G", "H")), "Choose E");
+        super.addQuestion("cat", new ArrayList<>(Arrays.asList("mat", "bat", "hat", "rat")), "cat");
         //question 3
-        super.addQuestion("I", new ArrayList<>(Arrays.asList("I", "J", "K", "L")), "Choose I");
+        super.addQuestion("key", new ArrayList<>(Arrays.asList("toy", "key", "roy", "wey")), "key");
     }
 }

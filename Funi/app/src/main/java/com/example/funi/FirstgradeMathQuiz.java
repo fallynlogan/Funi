@@ -12,10 +12,10 @@ public class FirstgradeMathQuiz extends Quiz {
     public void setQuestions() {
         //eventually set this to 30 for 30 questions
         //question 1
-        super.addQuestion("A", new ArrayList<>(Arrays.asList("A", "B", "C", "D")), "Choose A");
+        super.addQuestion("12", new ArrayList<>(Arrays.asList("9", "10", "11", "12")), "10+2");
         //question 2
-        super.addQuestion("E", new ArrayList<>(Arrays.asList("E", "F", "G", "H")), "Choose E");
+        super.addQuestion("8", new ArrayList<>(Arrays.asList("6", "7", "8", "9")), "4+4");
         //question 3
-        super.addQuestion("I", new ArrayList<>(Arrays.asList("I", "J", "K", "L")), "Choose I");
+        super.addQuestion("5", new ArrayList<>(Arrays.asList("5", "4", "3", "2")), "7-2");
     }
 }
