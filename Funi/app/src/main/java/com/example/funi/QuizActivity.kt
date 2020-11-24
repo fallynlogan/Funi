@@ -2,8 +2,9 @@
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_quiz.*
 
@@ -11,9 +12,9 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      private var name : String? = null
      private var subject : CharSequence? = null
      private var gradeLevel : String? = null
-     private var quiz : Quiz? = null
      private var q: Question? = null
      private var myEndScreen = EndScreen()
+     private var quiz: QuizInterface? = null
 
 
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_quiz.*
         name = intent.getStringExtra("playerName")
         subject = intent.getCharSequenceExtra("subject")
         gradeLevel = intent.getStringExtra("gradeLevel")
-
         makeQuiz()
 
          //event listener for check answer button
@@ -48,23 +48,17 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      }
 
       fun makeQuiz() {
-        when(subject) {
-            "Reading" -> when (gradeLevel) {
-                "pre-school" -> quiz = PreschoolReadingQuiz()
-                "kindergarten" -> quiz = KindergartenReadingQuiz()
-                "1st grade" -> quiz = FirstgradeReadingQuiz()
-                "2nd grade" -> quiz = SecondgradeReadingQuiz()
-                "3rd grade" -> quiz = ThirdgradeReadingQuiz()
+          var chosenQuiz = Quiz()
+          when(subject) {
+          "Reading" -> when (gradeLevel) {
+                "pre-school" -> quiz = PreschoolReadingDecorator(chosenQuiz)
             }
             "Math" -> when (gradeLevel) {
-                "pre-school" -> quiz = PreschoolMathQuiz()
-                "kindergarten" -> quiz = KindergartenMathQuiz()
-                "1st grade" -> quiz = FirstgradeMathQuiz()
-                "2nd grade" -> quiz = SecondgradeMathQuiz()
-                "3rd grade" -> quiz = ThirdgradeMathQuiz()
+
             }
         }
-          q = quiz?.getQuiz()
+          println("currentQuestion:" + quiz?.getCurrentQuestion());
+          q = quiz?.currentQuestion
           displayQuestion(q)
      }
 

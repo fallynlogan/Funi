@@ -17,13 +17,13 @@ data class QuizScreen(var name:CharSequence = "", var gradeLevel:String = "", va
 
     private fun setGradeLevel(position:Int)
     {
-        when(position) {
-            0 -> gradeLevel = "pre-school"
-            1 -> gradeLevel = "kindergarten"
-            2 -> gradeLevel = "1st grade"
-            3 -> gradeLevel = "2nd grade"
-            4 -> gradeLevel = "3rd grade"
-            else -> gradeLevel = "grade"
+        gradeLevel = when(position) {
+            0 -> "pre-school"
+            1 -> "kindergarten"
+            2 -> "1st grade"
+            3 -> "2nd grade"
+            4 -> "3rd grade"
+            else -> "grade"
         }
     }
 
