@@ -12,6 +12,8 @@
     <string name="tryAgainButton">Try Again</string>
     <string name="startOverButton" > Start Over</string>
     <string name="gameOverText">Game Over</string>
+    <string name="questionimage">questionImage</string>
+    <string name="switchSubjectButtonText">Switch Subject</string>
     <string-array name="gradeLevels">
         <item>pre-school</item>
         <item>kindergarten</item>

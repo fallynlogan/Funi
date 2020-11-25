@@ -11,6 +11,7 @@ class EndActivity : AppCompatActivity() {
     private var subject : CharSequence? = null
     private var gradeLevel : String? = null
     private var selectedGradePosition = 0
+    private var myNewQuizScreen = QuizScreen()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,22 @@ class EndActivity : AppCompatActivity() {
                     it2
                 )
             } }
+            val intent = Intent(this, QuizActivity::class.java)
+            intent.putExtra("playerName", myQuizScreen.name)
+            intent.putExtra("subject", myQuizScreen.subject)
+            intent.putExtra("gradeLevel", myQuizScreen.gradeLevel)
+            startActivity(intent)
+        }
+
+        //switch subject event listener
+        switchSubjectButton.setOnClickListener {
+            when(subject) {
+                "Reading" -> subject = "Math"
+                "Math" -> subject = "Reading"
+            }
+            println(name + " " + subject + " " + gradeLevel)
+            name?.let { it1 -> subject?.let { it2 -> myQuizScreen.quiz(selectedGradePosition, it1, it2) } }
+            println("myQuizScreenName"+ myQuizScreen.name)
             val intent = Intent(this, QuizActivity::class.java)
             intent.putExtra("playerName", myQuizScreen.name)
             intent.putExtra("subject", myQuizScreen.subject)

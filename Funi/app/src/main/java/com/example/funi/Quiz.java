@@ -1,12 +1,14 @@
 package com.example.funi;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Quiz implements QuizInterface {
     public ArrayList<Question> questions = new ArrayList<>();
     Iterator<Question> it;
     private Question q;
     public boolean hasEnded = false;
+    private List<Observer> observers = new ArrayList<>();
 
     @Override
     public void addQuestion(String answer, ArrayList<String> answerChoices, String question) {
@@ -50,12 +52,28 @@ public class Quiz implements QuizInterface {
     public Question checkAnswer(String chosenAnswer) {
         if(!hasEnded) {
             if (chosenAnswer == q.getAnswer()) {
-                //notifyObserverCorrect
+                notifyAllObservers(true);
             } else {
-                //notifyObserverIncorrect
+                notifyAllObservers(false);
             }
             q = getNextQuestion();
         }
         return q;
+    }
+
+    @Override
+    public void notifyAllObservers(Boolean correct) {
+        for(Observer observer : observers) {
+            if(correct) {
+                observer.updateCorrectAnswers();
+            } else {
+                observer.updateIncorrectAnswers();
+            }
+        }
+    }
+
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
     }
 }

@@ -21,7 +21,6 @@ public abstract class QuizDecorator implements QuizInterface{
         return decoratedQuiz.getQuiz();
     }
 
-    @Override
     public Boolean getHasEnded() {
         return decoratedQuiz.getHasEnded();
     }
@@ -32,5 +31,13 @@ public abstract class QuizDecorator implements QuizInterface{
 
     public Question checkAnswer(String chosenAnswer) {
         return decoratedQuiz.checkAnswer(chosenAnswer);
+    }
+
+    public void attach(Observer observer) {
+        decoratedQuiz.attach(observer);
+    }
+
+    public void notifyAllObservers(Boolean correct) {
+        decoratedQuiz.notifyAllObservers(correct);
     }
 }

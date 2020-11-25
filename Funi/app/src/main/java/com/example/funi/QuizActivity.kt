@@ -2,9 +2,7 @@
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.widget.RadioButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_quiz.*
 
@@ -15,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      private var q: Question? = null
      private var myEndScreen = EndScreen()
      private var quiz: QuizInterface? = null
+     private var observer: QuizObserver? = null
 
 
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,9 @@ import kotlinx.android.synthetic.main.activity_quiz.*
             val answerID = quizRadioGroup.checkedRadioButtonId
             val chosenAnswer = findViewById<RadioButton>(answerID).text
             val nextQuestion = quiz?.checkAnswer(chosenAnswer.toString())
-            if(!quiz?.hasEnded!!) {
+            updateMissedQuestions()
+            println(observer?.numIncorrect)
+            if(!quiz?.hasEnded!! && observer?.numIncorrect!! < 3) {
                 displayQuestion(nextQuestion)
             }
             else {
@@ -47,7 +48,7 @@ import kotlinx.android.synthetic.main.activity_quiz.*
         }
      }
 
-      fun makeQuiz() {
+      private fun makeQuiz() {
           var chosenQuiz = Quiz()
           when(subject) {
           "Reading" -> when (gradeLevel) {
@@ -57,19 +58,29 @@ import kotlinx.android.synthetic.main.activity_quiz.*
 
             }
         }
+          observer = QuizObserver(quiz)
           println("currentQuestion:" + quiz?.getCurrentQuestion());
           q = quiz?.currentQuestion
           displayQuestion(q)
      }
 
-     fun displayQuestion(q: Question?) {
+     private fun displayQuestion(q: Question?) {
          val question = q?.question
          val answerChoices = q?.answerChoices
-         quizText.text = question
+         val resID = resources.getIdentifier(question, "drawable", packageName)
+         questionImageView.setImageResource(resID)
          answer1.text = answerChoices?.get(0)
          answer2.text = answerChoices?.get(1)
          answer3.text = answerChoices?.get(2)
          answer4.text = answerChoices?.get(3)
+     }
+
+     private fun updateMissedQuestions() {
+         when(observer?.numIncorrect) {
+             1 -> wrong1.text = "X"
+             2 -> wrong2.text = "X"
+             3 -> wrong3.text = "X"
+         }
      }
 
  }

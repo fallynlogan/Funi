@@ -9,4 +9,6 @@ public interface QuizInterface {
     Question getNextQuestion();
     Question checkAnswer(String chosenAnswer);
     Boolean getHasEnded();
+    void notifyAllObservers(Boolean correct);
+    void attach(Observer observer);
 }
