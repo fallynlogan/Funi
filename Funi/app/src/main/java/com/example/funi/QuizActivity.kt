@@ -2,6 +2,7 @@
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_quiz.*
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      private var myEndScreen = EndScreen()
      private var quiz: QuizInterface? = null
      private var observer: QuizObserver? = null
+     private var endTime : Double? = null
 
 
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,9 @@ import kotlinx.android.synthetic.main.activity_quiz.*
         subject = intent.getCharSequenceExtra("subject")
         gradeLevel = intent.getStringExtra("gradeLevel")
         makeQuiz()
+         quizChronometer.base = SystemClock.elapsedRealtime();
+        quizChronometer.start()
+
 
          //event listener for check answer button
         checkAnswerButton.setOnClickListener {
@@ -37,12 +42,17 @@ import kotlinx.android.synthetic.main.activity_quiz.*
             }
             else {
                 // start end screen activity
-                myEndScreen.end(gradeLevel, name, subject)
-                println("Ended " + myEndScreen.gradeLevel + myEndScreen.name + myEndScreen.subject)
+                quizChronometer.stop()
+                //get the time in milliseconds and convert to seconds https://stackoverflow.com/questions/526524/android-get-time-of-chronometer-widget
+                endTime = (((SystemClock.elapsedRealtime() - quizChronometer.base)) * 0.001)
+                myEndScreen.end(gradeLevel, name, subject, observer?.numIncorrect, endTime)
+                println("Ended " + myEndScreen.gradeLevel + myEndScreen.name + myEndScreen.subject + myEndScreen.time + myEndScreen.numIncorrect)
                 val intent = Intent(this, EndActivity::class.java)
                 intent.putExtra("playerName", myEndScreen.name)
                 intent.putExtra("subject", myEndScreen.subject)
                 intent.putExtra("gradeLevel", myEndScreen.gradeLevel)
+                intent.putExtra("numIncorrect", myEndScreen.numIncorrect)
+                intent.putExtra("time", myEndScreen.time)
                 startActivity(intent)
             }
         }

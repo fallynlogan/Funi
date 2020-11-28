@@ -1,8 +1,9 @@
 package com.example.funi
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_end.*
 
 class EndActivity : AppCompatActivity() {
@@ -10,6 +11,8 @@ class EndActivity : AppCompatActivity() {
     private var name : String? = null
     private var subject : CharSequence? = null
     private var gradeLevel : String? = null
+    private var numIncorrect : Int? = null
+    private var time : Double? = null
     private var selectedGradePosition = 0
     private var myNewQuizScreen = QuizScreen()
 
@@ -20,7 +23,11 @@ class EndActivity : AppCompatActivity() {
         name = intent.getStringExtra("playerName")
         subject = intent.getCharSequenceExtra("subject")
         gradeLevel = intent.getStringExtra("gradeLevel")
-
+        numIncorrect = intent.getIntExtra("numIncorrect", 0)
+        time = intent.getDoubleExtra("time", 0.0)
+        if(numIncorrect!! < 3) {
+            addToLeaderBoard()
+        }
         //try again event listener
         tryAgainButton.setOnClickListener{
             when(gradeLevel) {
@@ -63,5 +70,20 @@ class EndActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun addToLeaderBoard() {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Congratulations, $name!")
+        alertDialogBuilder.setMessage("Would you like to add your name to the Funi leader board?")
+        //alertDialogBuilder.setIcon(R.drawable)
+        alertDialogBuilder.setPositiveButton("Yes") { dialog, _ ->  dialog.dismiss()
+        //add to leader board
+        }
+        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->  dialog.dismiss()
+        }
+        val alert: AlertDialog = alertDialogBuilder.create()
+        alert.show()
+
     }
 }
