@@ -26,7 +26,7 @@ class EndActivity : AppCompatActivity() {
         numIncorrect = intent.getIntExtra("numIncorrect", 0)
         time = intent.getDoubleExtra("time", 0.0)
         if(numIncorrect!! < 3) {
-            addToLeaderBoard()
+            showAlert()
         }
         //try again event listener
         tryAgainButton.setOnClickListener{
@@ -72,7 +72,7 @@ class EndActivity : AppCompatActivity() {
         }
     }
 
-    private fun addToLeaderBoard() {
+    private fun showAlert() {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setTitle("Congratulations, $name!")
         alertDialogBuilder.setMessage("Would you like to add your name to the Funi leader board?")

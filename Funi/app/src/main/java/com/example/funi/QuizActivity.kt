@@ -65,10 +65,11 @@ import kotlinx.android.synthetic.main.activity_quiz.*
                 "pre-school" -> quiz = PreschoolReadingDecorator(chosenQuiz)
             }
             "Math" -> when (gradeLevel) {
-
+                "pre-school" -> quiz = PreschoolMathDecorator(chosenQuiz)
             }
         }
           observer = QuizObserver(quiz)
+          println("observer: "+  observer)
           println("currentQuestion:" + quiz?.getCurrentQuestion());
           q = quiz?.currentQuestion
           displayQuestion(q)

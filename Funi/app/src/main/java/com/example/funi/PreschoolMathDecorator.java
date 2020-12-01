@@ -15,7 +15,7 @@ public class PreschoolMathDecorator extends QuizDecorator {
         decoratedQuiz.addQuestion("9", new ArrayList<>(Arrays.asList("6", "7", "9", "4")), "math9");
         decoratedQuiz.addQuestion("6", new ArrayList<>(Arrays.asList("9", "2", "6", "5")), "math6");
         decoratedQuiz.addQuestion("3", new ArrayList<>(Arrays.asList("3", "5", "9", "4")), "math3");
-        decoratedQuiz.addQuestion("10", new ArrayList<>(Arrays.asList("0", "2", "1", "10")), "math10");
+        //decoratedQuiz.addQuestion("10", new ArrayList<>(Arrays.asList("0", "2", "1", "10")), "math10");
         decoratedQuiz.addQuestion("5", new ArrayList<>(Arrays.asList("0", "7", "10", "5")), "math5");
         decoratedQuiz.addQuestion("7", new ArrayList<>(Arrays.asList("0", "7", "4", "2")), "math7");
         decoratedQuiz.addQuestion("2", new ArrayList<>(Arrays.asList("2", "3", "4", "5")), "math2");
