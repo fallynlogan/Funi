@@ -2,6 +2,8 @@ package com.example.funi
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_end.*
@@ -14,7 +16,8 @@ class EndActivity : AppCompatActivity() {
     private var numIncorrect : Int? = null
     private var time : Double? = null
     private var selectedGradePosition = 0
-    private var myNewQuizScreen = QuizScreen()
+    private var leaderboard: Leaderboard? = null
+    private var listView: ListView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +28,13 @@ class EndActivity : AppCompatActivity() {
         gradeLevel = intent.getStringExtra("gradeLevel")
         numIncorrect = intent.getIntExtra("numIncorrect", 0)
         time = intent.getDoubleExtra("time", 0.0)
+
+        gameOverTextview.text = "Game Over, $name"
+
         if(numIncorrect!! < 3) {
             showAlert()
         }
+        displayLeaderBoard()
         //try again event listener
         tryAgainButton.setOnClickListener{
             when(gradeLevel) {
@@ -78,7 +85,7 @@ class EndActivity : AppCompatActivity() {
         alertDialogBuilder.setMessage("Would you like to add your name to the Funi leader board?")
         //alertDialogBuilder.setIcon(R.drawable)
         alertDialogBuilder.setPositiveButton("Yes") { dialog, _ ->  dialog.dismiss()
-        //add to leader board
+        addToLeaderBoard()
         }
         alertDialogBuilder.setNegativeButton("No") { dialog, _ ->  dialog.dismiss()
         }
@@ -86,4 +93,27 @@ class EndActivity : AppCompatActivity() {
         alert.show()
 
     }
+
+    private fun displayLeaderBoard() {
+        listView = leaderboardListView
+        when(gradeLevel) {
+            "pre-school" -> leaderBoardTextview.text = "Pre-School $subject Leader Board"
+        }
+        val test = Array(5){
+            "blah"
+        }
+
+        val adapter : ArrayAdapter<String> = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_list_item_1,
+            test
+        )
+        listView?.adapter = adapter
+    }
+
+    private fun addToLeaderBoard() {
+        println("Added $name to leader board")
+        val player = numIncorrect?.let { Player(name, gradeLevel, subject.toString(), time, it) }
+    }
+
 }
