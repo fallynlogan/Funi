@@ -50,4 +50,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun updateUI() {
+        playerName = editTextName.text.toString()
+        subjectID = startRadioGroup.checkedRadioButtonId
+        selectedGradePosition = gradeSpinner.selectedItemPosition
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("name",playerName)
+        outState.putCharSequence("subject", subject)
+        outState.putInt("gradeLevel", selectedGradePosition)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        playerName = savedInstanceState.getString("name")!!
+        subject = savedInstanceState.getCharSequence("subject")!!
+        selectedGradePosition = savedInstanceState.getInt("gradeLevel")
+        updateUI()
+    }
 }
