@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.activity_quiz.*
      private var quiz: QuizInterface? = null
      private var observer: QuizObserver? = null
      private var endTime : Double? = null
+     private var pauseTime : Long? = null
+     private var resID : Int = 0
+     private var answerChoices : ArrayList<String>? = null
 
 
      override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,8 +80,8 @@ import kotlinx.android.synthetic.main.activity_quiz.*
 
      private fun displayQuestion(q: Question?) {
          val question = q?.question
-         val answerChoices = q?.answerChoices
-         val resID = resources.getIdentifier(question, "drawable", packageName)
+         answerChoices = q?.answerChoices
+         resID = resources.getIdentifier(question, "drawable", packageName)
          questionImageView.setImageResource(resID)
          answer1.text = answerChoices?.get(0)
          answer2.text = answerChoices?.get(1)
@@ -92,6 +95,46 @@ import kotlinx.android.synthetic.main.activity_quiz.*
              2 -> wrong2.text = "X"
              3 -> wrong3.text = "X"
          }
+     }
+
+     private fun updateUI() {
+         answer1.text = answerChoices?.get(0)
+         answer2.text = answerChoices?.get(1)
+         answer3.text = answerChoices?.get(2)
+         answer4.text = answerChoices?.get(3)
+         questionImageView.setImageResource(resID)
+         quizChronometer.base = (SystemClock.elapsedRealtime() - this!!.pauseTime!!)
+         quizChronometer.start()
+         if(observer?.numIncorrect == 1) {
+             wrong1.text = "X"
+         }
+         if(observer?.numIncorrect == 2) {
+             wrong1.text = "X"
+             wrong2.text = "X"
+         }
+         if(observer?.numIncorrect == 3) {
+             wrong1.text = "X"
+             wrong2.text = "X"
+             wrong3.text = "X"
+         }
+     }
+
+     override fun onSaveInstanceState(outState: Bundle) {
+         pauseTime = (((SystemClock.elapsedRealtime() - quizChronometer.base)))
+         outState.putLong("time", pauseTime!!)
+         outState.putInt("image", resID)
+         observer?.numIncorrect?.let { outState.putInt("numIncorrect", it) }
+         outState.putStringArrayList("answerChoices", answerChoices)
+         super.onSaveInstanceState(outState)
+     }
+
+     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+         super.onRestoreInstanceState(savedInstanceState)
+         pauseTime = savedInstanceState.getLong("time")
+         resID = savedInstanceState.getInt("image")
+         observer?.numIncorrect = savedInstanceState.getInt("numIncorrect")
+         answerChoices = savedInstanceState.getStringArrayList("answerChoices")
+         updateUI()
      }
 
  }
