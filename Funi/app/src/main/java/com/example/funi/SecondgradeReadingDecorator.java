@@ -10,16 +10,16 @@ public class SecondgradeReadingDecorator extends QuizDecorator{
     }
 
     private QuizInterface setQuestions(QuizInterface decoratedQuiz) {
-        decoratedQuiz.addQuestion("A", new ArrayList<>(Arrays.asList("A", "B", "C", "D")), "a");
-        decoratedQuiz.addQuestion("E", new ArrayList<>(Arrays.asList("E", "F", "G", "H")), "e");
-        decoratedQuiz.addQuestion("I", new ArrayList<>(Arrays.asList("I", "J", "K", "L")), "i");
-        decoratedQuiz.addQuestion("M", new ArrayList<>(Arrays.asList("M", "N", "O", "P")), "m");
-        decoratedQuiz.addQuestion("Q", new ArrayList<>(Arrays.asList("Q", "R", "S", "T")), "q");
-        decoratedQuiz.addQuestion("U", new ArrayList<>(Arrays.asList("U", "V", "W", "X")), "u");
-        decoratedQuiz.addQuestion("Y", new ArrayList<>(Arrays.asList("Y", "Z", "A", "B")), "y");
-        decoratedQuiz.addQuestion("ABCD", new ArrayList<>(Arrays.asList("ACBD","ABCD","ADCB","BACD")), "abcd");
-        decoratedQuiz.addQuestion("EFGH", new ArrayList<>(Arrays.asList("EFGH","HGFE","FGHE","EGFH")), "efgh");
-        decoratedQuiz.addQuestion("IJKL", new ArrayList<>(Arrays.asList("LKJI","KJIL","IKJL","IJKL")), "ijkl");
+        decoratedQuiz.addQuestion("library", new ArrayList<>(Arrays.asList("library", "liebrary", "lybrary", "librari")), "library");
+        decoratedQuiz.addQuestion("pirate", new ArrayList<>(Arrays.asList("pirate", "pilot", "pyrate", "pirit")), "pirate");
+        decoratedQuiz.addQuestion("officer", new ArrayList<>(Arrays.asList("oficer", "officer", "offiser", "ophicer")), "officer");
+        decoratedQuiz.addQuestion("printer", new ArrayList<>(Arrays.asList("prenter", "printer", "prentir", "printa")), "printer");
+        decoratedQuiz.addQuestion("science", new ArrayList<>(Arrays.asList("siense", "seyeince", "syence", "science")), "science");
+        decoratedQuiz.addQuestion("walking", new ArrayList<>(Arrays.asList("walking", "wahking", "walcing", "wallking")), "walking");
+        decoratedQuiz.addQuestion("chicken", new ArrayList<>(Arrays.asList("chiken", "chicken", "thicken", "chikken")), "chicken");
+        decoratedQuiz.addQuestion("factory", new ArrayList<>(Arrays.asList("factory", "facktory", "facrty", "phactory")), "factory");
+        decoratedQuiz.addQuestion("kitchen", new ArrayList<>(Arrays.asList("citchen", "kitchen", "kittchen", "cittchen")), "kitchen");
+        decoratedQuiz.addQuestion("treasure", new ArrayList<>(Arrays.asList("tregure", "trehjur", "treasure", "tresure")), "treasure");
         return decoratedQuiz;
     }
 
