@@ -66,9 +66,17 @@ import kotlinx.android.synthetic.main.activity_quiz.*
           when(subject) {
           "Reading" -> when (gradeLevel) {
                 "pre-school" -> quiz = PreschoolReadingDecorator(chosenQuiz)
+                "kindergarten" -> quiz = KindergartenReadingDecorator(chosenQuiz)
+                "1st grade" -> quiz = FirstgradeReadingDecorator(chosenQuiz)
+                "2nd grade" -> quiz = SecondgradeReadingDecorator(chosenQuiz)
+                "3rd grade" -> quiz = ThirdgradeReadingDecorator(chosenQuiz)
             }
             "Math" -> when (gradeLevel) {
                 "pre-school" -> quiz = PreschoolMathDecorator(chosenQuiz)
+                "kindergarten" -> quiz = KindergartenMathDecorator(chosenQuiz)
+                "1st grade" -> quiz = FirstgradeMathDecorator(chosenQuiz)
+                "2nd grade" -> quiz = SecondgradeMathDecorator(chosenQuiz)
+                "3rd grade" -> quiz = ThirdgradeMathDecorator(chosenQuiz)
             }
         }
           observer = QuizObserver(quiz)
