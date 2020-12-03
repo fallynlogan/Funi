@@ -10,16 +10,16 @@ public class FirstgradeMathDecorator extends QuizDecorator {
     }
 
     private QuizInterface setQuestions(QuizInterface decoratedQuiz) {
-        decoratedQuiz.addQuestion("1", new ArrayList<>(Arrays.asList("0", "1", "2", "3")), "math1");
-        decoratedQuiz.addQuestion("4", new ArrayList<>(Arrays.asList("3", "8", "4", "2")), "math4");
-        decoratedQuiz.addQuestion("9", new ArrayList<>(Arrays.asList("6", "7", "9", "4")), "math9");
-        decoratedQuiz.addQuestion("6", new ArrayList<>(Arrays.asList("9", "2", "6", "5")), "math6");
-        decoratedQuiz.addQuestion("3", new ArrayList<>(Arrays.asList("3", "5", "9", "4")), "math3");
-        decoratedQuiz.addQuestion("10", new ArrayList<>(Arrays.asList("0", "2", "1", "10")), "math10");
-        decoratedQuiz.addQuestion("5", new ArrayList<>(Arrays.asList("0", "7", "10", "5")), "math5");
-        decoratedQuiz.addQuestion("7", new ArrayList<>(Arrays.asList("0", "7", "4", "2")), "math7");
-        decoratedQuiz.addQuestion("2", new ArrayList<>(Arrays.asList("2", "3", "4", "5")), "math2");
-        decoratedQuiz.addQuestion("8", new ArrayList<>(Arrays.asList("7", "8", "9", "10")), "math8");
+        decoratedQuiz.addQuestion("900", new ArrayList<>(Arrays.asList("1000", "890", "899", "900")), "firstmath1");
+        decoratedQuiz.addQuestion("650", new ArrayList<>(Arrays.asList("660", "640", "650", "670")), "firstmath2");
+        decoratedQuiz.addQuestion("8", new ArrayList<>(Arrays.asList("8", "18", "0", "9")), "firstmath3");
+        decoratedQuiz.addQuestion("800", new ArrayList<>(Arrays.asList("800", "700", "600", "750")), "firstmath4");
+        decoratedQuiz.addQuestion("251", new ArrayList<>(Arrays.asList("151", "250", "251", "351")), "firstmath5");
+        decoratedQuiz.addQuestion("700", new ArrayList<>(Arrays.asList("600", "700", "800", "7")), "firstmath6");
+        decoratedQuiz.addQuestion("700", new ArrayList<>(Arrays.asList("600", "700", "800", "722")), "firstmath7");
+        decoratedQuiz.addQuestion("300", new ArrayList<>(Arrays.asList("300", "200", "100", "400")), "firstmath8");
+        decoratedQuiz.addQuestion("71", new ArrayList<>(Arrays.asList("71", "72", "62", "61")), "firstmath9");
+        decoratedQuiz.addQuestion("333", new ArrayList<>(Arrays.asList("332", "333", "323", "322")), "firstmath10");
         return decoratedQuiz;
     }
 }
