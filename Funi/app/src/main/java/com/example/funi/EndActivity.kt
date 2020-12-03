@@ -46,7 +46,7 @@ class EndActivity : AppCompatActivity() {
                 "kindergarten" -> selectedGradePosition = 1
                 "1st grade" -> selectedGradePosition = 2
                 "2nd grade" -> selectedGradePosition = 3
-                "3rd grade" -> selectedGradePosition = 3
+                "3rd grade" -> selectedGradePosition = 4
             }
             name?.let { it1 -> subject?.let { it2 ->
                 myQuizScreen.quiz(selectedGradePosition, it1,
@@ -62,6 +62,13 @@ class EndActivity : AppCompatActivity() {
 
         //switch subject event listener
         switchSubjectButton.setOnClickListener {
+            when(gradeLevel) {
+                "pre-school" -> selectedGradePosition = 0
+                "kindergarten" -> selectedGradePosition = 1
+                "1st grade" -> selectedGradePosition = 2
+                "2nd grade" -> selectedGradePosition = 3
+                "3rd grade" -> selectedGradePosition = 4
+            }
             when(subject) {
                 "Reading" -> subject = "Math"
                 "Math" -> subject = "Reading"
