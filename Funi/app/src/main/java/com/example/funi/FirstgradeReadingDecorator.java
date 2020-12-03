@@ -10,16 +10,26 @@ public class FirstgradeReadingDecorator extends QuizDecorator{
     }
 
     private QuizInterface setQuestions(QuizInterface decoratedQuiz) {
-        decoratedQuiz.addQuestion("A", new ArrayList<>(Arrays.asList("A", "B", "C", "D")), "a");
-        decoratedQuiz.addQuestion("E", new ArrayList<>(Arrays.asList("E", "F", "G", "H")), "e");
-        decoratedQuiz.addQuestion("I", new ArrayList<>(Arrays.asList("I", "J", "K", "L")), "i");
-        decoratedQuiz.addQuestion("M", new ArrayList<>(Arrays.asList("M", "N", "O", "P")), "m");
-        decoratedQuiz.addQuestion("Q", new ArrayList<>(Arrays.asList("Q", "R", "S", "T")), "q");
-        decoratedQuiz.addQuestion("U", new ArrayList<>(Arrays.asList("U", "V", "W", "X")), "u");
-        decoratedQuiz.addQuestion("Y", new ArrayList<>(Arrays.asList("Y", "Z", "A", "B")), "y");
-        decoratedQuiz.addQuestion("ABCD", new ArrayList<>(Arrays.asList("ACBD","ABCD","ADCB","BACD")), "abcd");
-        decoratedQuiz.addQuestion("EFGH", new ArrayList<>(Arrays.asList("EFGH","HGFE","FGHE","EGFH")), "efgh");
-        decoratedQuiz.addQuestion("IJKL", new ArrayList<>(Arrays.asList("LKJI","KJIL","IKJL","IJKL")), "ijkl");
+        //question 1
+        decoratedQuiz.addQuestion("truck", new ArrayList<>(Arrays.asList("truck", "truk", "trruck", "trukc")), "truck");
+        //question 2
+        decoratedQuiz.addQuestion("popcorn", new ArrayList<>(Arrays.asList("pepcorn", "popcorn", "popkorn", "poppcorn")), "popcorn");
+        //question 3
+        decoratedQuiz.addQuestion("flower", new ArrayList<>(Arrays.asList("phlawer", "flawer", "flower", "phlower")), "flower");
+        //question 4
+        decoratedQuiz.addQuestion("star", new ArrayList<>(Arrays.asList("star", "starr", "stare", "stir")), "star");
+        //question 5
+        decoratedQuiz.addQuestion("cake", new ArrayList<>(Arrays.asList("kake", "cake", "cakke", "caake")), "cake");
+        //question 6
+        decoratedQuiz.addQuestion("eyes", new ArrayList<>(Arrays.asList("iyes", "eeyes", "eyees", "eyes")), "eyes");
+        //question 7
+        decoratedQuiz.addQuestion("fire", new ArrayList<>(Arrays.asList("fire", "fyer", "phire", "phyer")), "fire");
+        //question 8
+        decoratedQuiz.addQuestion("house", new ArrayList<>(Arrays.asList("howse", "hose", "house", "hoose")), "house");
+        //question 9
+        decoratedQuiz.addQuestion("lock", new ArrayList<>(Arrays.asList("lock", "locc", "look", "lick")), "lock");
+        //question 10
+        decoratedQuiz.addQuestion("panda", new ArrayList<>(Arrays.asList("panduh", "panda", "pandu", "pande")), "panda.");
         return decoratedQuiz;
     }
 
